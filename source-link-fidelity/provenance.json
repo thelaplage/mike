@@ -1,0 +1,21 @@
+{
+  "frozen_candidate": "1023602a5091a3a9598f87773ec80757b2c368e5",
+  "bundle_digest": "cf43716df9337a236a7fdbfca82b894739a25c909b90cb0ad2383474faffc29e",
+  "clients": {
+    "oss": {
+      "commit": "daf018daa93010103c5f28fdadb2d11f91284797",
+      "archive_sha256": "3ce36863659bf5137c9c97084db751f6b1ce926cb82ad62765d8c5c9c97272ef",
+      "tracked_blob_check": {"tracked": 2650, "missing": 0, "mismatches": 0},
+      "images": {"backend": "local/source-fidelity-oss/mike-backend:daf018daa930", "frontend": "local/source-fidelity-oss/mike-frontend:daf018daa930"},
+      "checks": {"backend_test_passed": 207, "frontend_test_passed": 273, "backend_type": "PASS", "frontend_type": "PASS", "frontend_lint": "PASS"}
+    },
+    "gc": {
+      "commit": "f38facad21cec440de1cc2b9a00fc1815db0569b",
+      "archive_sha256": "452af578a14fdd7c3c58ab3da222fa38dc46b08208ea9eac39cffef27ab240b0",
+      "tracked_blob_check": {"tracked": 2852, "missing": 0, "mismatches": 0},
+      "images": {"backend": "local/source-fidelity-gc/mike-backend:f38facad21ce", "frontend": "local/source-fidelity-gc/mike-frontend:f38facad21ce"},
+      "checks": {"backend_test_passed": 199, "frontend_test_passed": 238, "backend_type": "PASS", "frontend_type": "PASS", "frontend_lint": "PASS"}
+    }
+  },
+  "no_deployment_or_source_mutation": true
+}

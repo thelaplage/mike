@@ -1,0 +1,13 @@
+{
+  "sealed_originals": [
+    {
+      "local_reference": "SOURCE_LINK_FIDELITY_20261113_delivery.zip",
+      "sha256": "a9534ce7cb65685f7d80940f538320dd47b8cb370f3261a0cece4ff7898de6bb"
+    },
+    {
+      "local_reference": "SOURCE_LINK_FIDELITY_LOCAL_ACCEPTANCE_20261113_delivery.zip",
+      "sha256": "4fdb310b03bbb2264daa0532060867ac52ab71cdffb0c60abc7937b1eaec7673"
+    }
+  ],
+  "note": "Full sealed deliveries remain available by local reference; this packet intentionally excludes private credentials, cookies, environment files, browser state, and unrelated raw artifacts."
+}

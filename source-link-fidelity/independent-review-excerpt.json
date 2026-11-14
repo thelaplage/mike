@@ -1,0 +1,12 @@
+{
+  "verdict": "PASS",
+  "basis": [
+    "Both clients produced real browser-composer MCP witnesses for counterpedia.sources and counterpedia.get_source_presence.",
+    "Structured Source links preserved exact source ID, documentary label, URL, and capture_observation basis.",
+    "Saved-chat refresh GETs returned 200 with matching message digests in both SEC and Court cases.",
+    "Original CA9 navigation returned HTTP 200 application/pdf; PDF bytes were not retained.",
+    "SEC adversarial URL remained model-authored prose and did not become a Source link."
+  ],
+  "limitation": "GC's first court answer had no tool-call event and is preserved as a failure; a later fresh explicitly guided court chat passed. This is not an autonomous-reliability endorsement.",
+  "review_file": "SOURCE_LINK_FIDELITY_LOCAL_ACCEPTANCE_20261113/INDEPENDENT_ACCEPTANCE_REVIEW.json"
+}
