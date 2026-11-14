@@ -1,0 +1,88 @@
+{
+  "disposition": "LOCAL_REVIEW_FIXES_VERIFIED / UPSTREAM_REVIEW_PENDING",
+  "clients": {
+    "oss": {
+      "head": "9571ec677af354c782f1e830d6268208d0f8c3cd",
+      "tree": "e114f899e417b602a4eac77e232f7852797e426c",
+      "parent": "daf018daa93010103c5f28fdadb2d11f91284797",
+      "reviewed_diff_sha256": "884a6b4a76a8c17b3778e90a1e14ce5aef35b179eac16ce55a54e05d7fe7670e",
+      "changed_file_sha256": {
+        "backend/src/lib/mcp/sourceLinks.test.ts": "e9c77094c2ad4e375583c35657e38c5dbf1172e19789ea8f9d414a2d08df80cd",
+        "backend/src/lib/mcp/sourceLinks.ts": "37432bc6cbb9c84554b68ce00f8f3a094a7c1ba5fcebf82106388853be52ea1d",
+        "frontend/src/app/components/assistant/AssistantMessage.test.tsx": "8d8534438fc8749d3bb52ab25c5ea4701dfebc7d81768a4ce5ad907636be4285",
+        "frontend/src/app/components/assistant/AssistantMessage.tsx": "0368b73c39e64b1c829b3449de16537e87c849365b4421f6dbed8f0ec7be016c",
+        "frontend/src/app/components/assistant/message/MarkdownContent.test.tsx": "96d8d9092ebb394a6c1a4d15b1a243517981e772d2e69e86c74f4d08350c6b13",
+        "frontend/src/app/components/assistant/message/MarkdownContent.tsx": "4ee1c5802f13f0659b0cb0bb946e087b59688f194cffdd1619aec8c4952c29c0",
+        "frontend/src/app/components/assistant/message/SourceLinksBlock.tsx": "84b3f8e96a8bf9d138fb1e5ec47ea3f38f82e83abff9318a33fbc6925d975f32",
+        "frontend/src/app/lib/assistantTurnStream.test.ts": "5b5efa86c5924160880b5c028a1591fa1f28981229f932c062075ae4dba9ad2a",
+        "frontend/src/app/lib/assistantTurnStream.ts": "16f2f199961d5ba46d39d4846140d972379ed970e34475322081342880a3280f",
+        "frontend/src/app/lib/mcpSourceLinks.test.ts": "43c02f938f69ff4da2fb7d9652387307256811715ac4afd1161c0f6b63a8e0c8",
+        "frontend/src/app/lib/mcpSourceLinks.ts": "8769cfce9cff1f261bc237474fe9f94bd32ad6b014d6ea360704b8df4947d242"
+      },
+      "checks": [
+        {
+          "mode": "frontend-checks",
+          "test_count": 295,
+          "exit_code": 0,
+          "relevant_inputs_match_commit": true,
+          "log_sha256": "1e610d30ea247f9057c60554d50c8e85c090575b91281624f3034bfbfcc0e05d"
+        },
+        {
+          "mode": "backend-checks",
+          "test_count": 215,
+          "exit_code": 0,
+          "relevant_inputs_match_commit": true,
+          "log_sha256": "13fb0604abc90d9fbede32a2145829d58db1b45ce2268165a81a629a6be4dc48"
+        }
+      ]
+    },
+    "gc": {
+      "head": "1799aa162fde075c76bd74f0efe2a38a424fa6c0",
+      "tree": "2dd132314ee4ff6288931c8e69fad35f970b33ba",
+      "parent": "f38facad21cec440de1cc2b9a00fc1815db0569b",
+      "reviewed_diff_sha256": "741a9bb1b78d864017b542a21dff8715de0c9c8ecd97ca71e195eeb927589d9f",
+      "changed_file_sha256": {
+        "backend/src/lib/mcp/sourceLinks.test.ts": "e9c77094c2ad4e375583c35657e38c5dbf1172e19789ea8f9d414a2d08df80cd",
+        "backend/src/lib/mcp/sourceLinks.ts": "37432bc6cbb9c84554b68ce00f8f3a094a7c1ba5fcebf82106388853be52ea1d",
+        "frontend/src/app/components/assistant/AssistantMessage.test.tsx": "8d8534438fc8749d3bb52ab25c5ea4701dfebc7d81768a4ce5ad907636be4285",
+        "frontend/src/app/components/assistant/AssistantMessage.tsx": "52faf8e7f0d5d3e57fdad9cb88dd767bbda0e6a712bc4401046d5014211986cf",
+        "frontend/src/app/components/assistant/message/MarkdownContent.test.tsx": "96d8d9092ebb394a6c1a4d15b1a243517981e772d2e69e86c74f4d08350c6b13",
+        "frontend/src/app/components/assistant/message/MarkdownContent.tsx": "4ee1c5802f13f0659b0cb0bb946e087b59688f194cffdd1619aec8c4952c29c0",
+        "frontend/src/app/components/assistant/message/SourceLinksBlock.tsx": "84b3f8e96a8bf9d138fb1e5ec47ea3f38f82e83abff9318a33fbc6925d975f32",
+        "frontend/src/app/lib/assistantTurnStream.test.ts": "692b1b94215d48c0650dd39412183e1b8785fe46c1b7fbb9277b78883b148af2",
+        "frontend/src/app/lib/assistantTurnStream.ts": "5bf9fc1787853b1be0587fa91ba260b733857a1e7bb8717eb47ba354699a82ec",
+        "frontend/src/app/lib/mcpSourceLinks.test.ts": "43c02f938f69ff4da2fb7d9652387307256811715ac4afd1161c0f6b63a8e0c8",
+        "frontend/src/app/lib/mcpSourceLinks.ts": "8769cfce9cff1f261bc237474fe9f94bd32ad6b014d6ea360704b8df4947d242"
+      },
+      "checks": [
+        {
+          "mode": "frontend-checks",
+          "test_count": 260,
+          "exit_code": 0,
+          "relevant_inputs_match_commit": true,
+          "log_sha256": "066e3215552e11b7261d09bea9cfa5b0858344914e185fc5f752df6a6e5e2cba"
+        },
+        {
+          "mode": "backend-checks",
+          "test_count": 207,
+          "exit_code": 0,
+          "relevant_inputs_match_commit": true,
+          "log_sha256": "9b70a4b253ab47af08fe0ffad46bac3d6de0dc215bdcff103cfc789c7de0e6ba"
+        }
+      ]
+    }
+  },
+  "independent_review": {
+    "verdict": "PROCEED_B",
+    "model": "Luna 5.6 medium",
+    "scope": "Both complete implementation diffs; final older-GC delegation type guard rechecked. No concrete defect found. Review is not a real-model/UI acceptance claim."
+  },
+  "limits": [
+    "Real-model/browser/saved-chat acceptance remains pinned to daf018d (OSS) and f38faca (GC). It was not rerun on these follow-up commits.",
+    "The preserved MikeGC no-tool first attempt remains a failure; guided-client limitations remain.",
+    "No fresh PDF bytes/hash claimed.",
+    "No fresh production Docker build or cloud deployment performed for these follow-up commits.",
+    "No upstream CI result claimed.",
+    "Hosted MCP remains frozen at 1023602a5091a3a9598f87773ec80757b2c368e5."
+  ]
+}
