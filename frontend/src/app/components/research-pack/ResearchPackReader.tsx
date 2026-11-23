@@ -25,6 +25,11 @@ function Revision({ revision }: { revision: ResearchPackRevision }) {
     const finding = object(revision.finding);
     const context = object(revision.context_selection);
     const notes = object(context.notes);
+    const researchContext = Array.isArray(revision.research_context)
+        ? revision.research_context
+        : [];
+    const propositions = Array.isArray(revision.propositions) ? revision.propositions : [];
+    const assessments = Array.isArray(revision.assessments) ? revision.assessments : [];
     return (
         <article className="rounded-xl border border-gray-200 bg-white p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -43,12 +48,12 @@ function Revision({ revision }: { revision: ResearchPackRevision }) {
             </h3>
             <div className="mt-2 space-y-3">
                 {(Array.isArray(revision.observations) ? revision.observations : []).map(
-                    (item, index) => {
+                    (item) => {
                         const observation = object(item);
                         const metadata = object(observation.metadata_at_save);
                         return (
                             <div
-                                key={String(observation.observation_id ?? index)}
+                                key={String(observation.observation_id ?? "")}
                                 className="rounded-lg bg-gray-50 p-4"
                             >
                                 <dl className="grid gap-3 sm:grid-cols-2">
@@ -75,50 +80,84 @@ function Revision({ revision }: { revision: ResearchPackRevision }) {
                     },
                 )}
             </div>
-            <h3 className="mt-6 text-sm font-semibold text-gray-700">Authored assessments</h3>
-            <div className="mt-2 space-y-2">
-                {(Array.isArray(revision.assessments) ? revision.assessments : []).map(
-                    (item, index) => {
-                        const assessment = object(item);
-                        return (
-                            <div
-                                key={String(assessment.observation_id ?? index)}
-                                className="rounded-lg bg-gray-50 p-4"
-                            >
-                                <dl className="grid gap-3 sm:grid-cols-4">
-                                    <Field
-                                        label="Observation ID"
-                                        value={assessment.observation_id}
-                                    />
-                                    <Field label="Author" value={assessment.author} />
-                                    <Field label="Stance" value={assessment.stance} />
-                                    <Field label="Note" value={assessment.note} />
-                                </dl>
-                            </div>
-                        );
-                    },
+            <h3 className="mt-6 text-sm font-semibold text-gray-700">
+                Propositions and authored assessments
+            </h3>
+            <div className="mt-2 space-y-3">
+                {propositions.length === 0 && (
+                    <p className="rounded-lg bg-gray-50 p-4 text-sm text-gray-600">
+                        No propositions recorded.
+                    </p>
                 )}
-            </div>
-            <h3 className="mt-6 text-sm font-semibold text-gray-700">Context review notes</h3>
-            <div className="mt-2 space-y-2">
-                {(Array.isArray(context.items) && context.items.length > 0 ? context.items : [null])
-                    .map((item, index) => {
-                        const review = object(object(item ?? {}).review);
-                        return (
-                            <dl
-                                key={index}
-                                className="grid gap-3 rounded-lg bg-gray-50 p-4 sm:grid-cols-2"
-                            >
-                                <Field label="Decision" value={review.decision ?? "none"} />
-                                <Field label="Review note" value={review.note ?? "none"} />
+                {propositions.map((item) => {
+                    const proposition = object(item);
+                    const propositionId = text(proposition.proposition_id);
+                    const linked = assessments.filter((candidate) => {
+                        const assessment = object(candidate);
+                        return assessment.proposition_id === proposition.proposition_id;
+                    });
+                    return (
+                        <div key={propositionId} className="rounded-lg bg-gray-50 p-4">
+                            <dl className="grid gap-3 sm:grid-cols-2">
+                                <Field label="Proposition ID" value={proposition.proposition_id} />
+                                <Field label="Proposition text" value={proposition.text} />
                             </dl>
-                        );
-                    })}
+                            <div className="mt-3 space-y-2 border-l-2 border-gray-200 pl-4">
+                                {linked.length === 0 && (
+                                    <p className="text-sm text-gray-600">
+                                        No assessments recorded for this proposition.
+                                    </p>
+                                )}
+                                {linked.map((candidate) => {
+                                    const assessment = object(candidate);
+                                    const pair = `${proposition.proposition_id ?? ""}:${
+                                        assessment.observation_id ?? ""
+                                    }`;
+                                    return (
+                                        <dl key={pair} className="grid gap-3 sm:grid-cols-4">
+                                            <Field
+                                                label="Assessment observation ID"
+                                                value={assessment.observation_id}
+                                            />
+                                            <Field label="Author" value={assessment.author} />
+                                            <Field label="Stance" value={assessment.stance} />
+                                            <Field label="Note" value={assessment.note} />
+                                        </dl>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
-            <h3 className="mt-6 text-sm font-semibold text-gray-700">Notes</h3>
+            <h3 className="mt-6 text-sm font-semibold text-gray-700">
+                Selected revision context reviews
+            </h3>
+            <div className="mt-2 space-y-2">
+                {researchContext.map((item) => {
+                    const contextRecord = object(item);
+                    const review = object(contextRecord.review);
+                    return (
+                        <dl
+                            key={text(contextRecord.context_id)}
+                            className="grid gap-3 rounded-lg bg-gray-50 p-4 sm:grid-cols-3"
+                        >
+                            <Field
+                                label="Context ID"
+                                value={contextRecord.context_id ?? "none"}
+                            />
+                            <Field label="Decision" value={review.decision ?? "none"} />
+                            <Field label="Review note" value={review.note ?? "none"} />
+                        </dl>
+                    );
+                })}
+            </div>
+            <h3 className="mt-6 text-sm font-semibold text-gray-700">
+                Original context selection notes
+            </h3>
             <dl className="mt-2 grid gap-3 rounded-lg bg-gray-50 p-4 sm:grid-cols-2">
-                <Field label="Working answer" value={notes.working_answer} />
-                <Field label="Still to check" value={notes.still_to_check} />
+                <Field label="Original working answer" value={notes.working_answer} />
+                <Field label="Original still to check" value={notes.still_to_check} />
             </dl>
         </article>
     );
@@ -167,7 +206,11 @@ export function ResearchPackReader() {
     const revision = opened?.pack.revisions.find((item) => item.revision === selected);
     const reportAuthenticity = text(opened?.report.authenticity ?? opened?.pack.authenticity);
     return (
-        <main className="mx-auto min-h-full w-full max-w-5xl px-6 py-10">
+        <section
+            aria-label="Research Pack contents"
+            tabIndex={0}
+            className="mx-auto w-full max-w-5xl shrink-0 px-6 py-10 focus-visible:outline-offset-[-2px] md:min-h-0 md:flex-1 md:overflow-y-auto"
+        >
             <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
                 <div>
                     <p className="text-sm text-gray-500">Counterpedia interoperability</p>
@@ -208,7 +251,9 @@ export function ResearchPackReader() {
                 </div>
             </div>
             {busy && (
-                <p role="status" className="mb-6 text-sm text-gray-600">Verifying selected file…</p>
+                <p role="status" className="mb-6 text-sm text-gray-600">
+                    Verifying selected file…
+                </p>
             )}
             {error && (
                 <div
@@ -260,23 +305,51 @@ export function ResearchPackReader() {
                         </h2>
                         {(Array.isArray(opened.pack.export.readback)
                             ? opened.pack.export.readback
-                            : []).map((item, index) => {
+                            : [])
+                            .map((item) => {
                                 const readback = object(item);
+                                const rowRevision = opened.pack.revisions.find((candidate) =>
+                                    candidate.revision === readback.revision
+                                );
+                                const matchingObservation =
+                                    (Array.isArray(rowRevision?.observations)
+                                        ? rowRevision.observations
+                                        : [])
+                                        .map(object)
+                                        .find((observation) =>
+                                            observation.observation_id ===
+                                                readback.observation_id
+                                        );
+                                const matchingTitle =
+                                    object(matchingObservation?.metadata_at_save).title;
                                 return (
                                     <dl
-                                        key={index}
-                                        className="mt-3 grid gap-3 rounded-lg bg-gray-50 p-4 sm:grid-cols-4"
+                                        key={`${text(readback.revision)}:${
+                                            text(readback.observation_id)
+                                        }`}
+                                        className="mt-3 grid gap-3 rounded-lg bg-gray-50 p-4 sm:grid-cols-5"
                                     >
                                         <Field label="Revision" value={readback.revision} />
+                                        <Field
+                                            label="Observation ID"
+                                            value={readback.observation_id}
+                                        />
+                                        <Field
+                                            label="Observation title"
+                                            value={matchingTitle}
+                                        />
                                         <Field label="State" value={readback.state} />
                                         <Field label="Basis" value={readback.basis} />
-                                        <Field label="Observed at" value={readback.observed_at} />
+                                        <Field
+                                            label="Observed at"
+                                            value={readback.observed_at}
+                                        />
                                     </dl>
                                 );
                             })}
                     </section>
                 </div>
             )}
-        </main>
+        </section>
     );
 }
